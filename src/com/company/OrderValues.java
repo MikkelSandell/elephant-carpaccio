@@ -15,11 +15,13 @@ public class OrderValues {
     }
 
     public double tax(){
-        if (statCode.equals("UT")){
-            return pris*1.0685;
-        }else if (statCode.equals("NV")){
-            return pris*1.0800;
-        }
-        return 0;
+        return switch (statCode) {
+            case "UT" -> pris * 1.0685;
+            case "NV" -> pris * 1.0800;
+            case "TX" -> pris * 1.0625;
+            case "AL" -> pris * 1.04;
+            case "CA" -> pris * 1.0825;
+            default -> 0;
+        };
     }
 }
